@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import axios from 'axios';
-import './style.css';
+import { connect } from 'react-redux';
+import fetchItems from '../actions/FetchItems';
+
 
 class App extends Component {
     state = {
@@ -14,12 +15,12 @@ class App extends Component {
     }
 
     componentDidMount() {
-        const { obj } = this.state;
-        axios.post('/req', obj).catch(err => console.log(err));
+        this.props.fetchItems();
     }
 
     render() {
         const { handler } = this;
+        console.log('PROPS: ', this.props.items);
         return (
             <Fragment>    
                 <h1>EfdSKHE</h1>
@@ -29,4 +30,11 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = state => ({
+    items: state.listReducer.items,
+    loading: state.listReducer.loading,
+    error: state.listReducer.error
+});
+  
+
+export default connect(mapStateToProps, { fetchItems })(App);
