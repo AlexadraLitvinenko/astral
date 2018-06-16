@@ -1,9 +1,17 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import fetchItems from '../actions/FetchItems';
+import React from 'react';
+//import { connect } from 'react-redux';
+import GridContainer from '../containers/GridContainer';
 
+import '../styles/App.css';
 
-class App extends Component {
+const App = () => (
+    <div className='app'>
+        <GridContainer />
+    </div>
+);
+
+export default App;
+/*class App extends Component {
     state = {
         obj: { first: 120, second: 'asdfghjkl', third: this.props.third }
     }
@@ -37,4 +45,5 @@ const mapStateToProps = state => ({
 });
   
 
-export default connect(mapStateToProps, { fetchItems })(App);
+
+export default connect(mapStateToProps, { fetchItems })(App);*/
