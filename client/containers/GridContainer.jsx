@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import fetchItems from '../actions/FetchItems';
@@ -7,15 +8,15 @@ import ItemsGrid from '../components/ItemsGrid';
 
 class GridContainer extends Component {
     
-
     componentDidMount() {
         this.props.fetchItems();
     }
 
     render() {
+        console.log('PROPS: ', this.props);
         const { items } = this.props;
-        return(
-            <ItemsGrid items = { items }/>
+        return (
+            <ItemsGrid items={ items } />
         );
     }
 }
@@ -36,4 +37,4 @@ GridContainer.propTypes = {
     fetchItems: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, { fetchItems })(GridContainer);
+export default withRouter(connect(mapStateToProps, { fetchItems })(GridContainer));

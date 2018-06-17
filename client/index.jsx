@@ -3,14 +3,11 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 
 import App from './components/App';
 import rootReducer from './reducers/Index';
-
-/*const customMiddleWare = () => next => action => {
-    console.log('Middleware triggered:', action);
-    next(action);
-};*/
 
 const store = createStore(rootReducer, 
     compose(applyMiddleware(thunk),
@@ -19,5 +16,7 @@ const store = createStore(rootReducer,
 
 render(
     <Provider store={ store }>
-        <App third='qwertyuiop' />
+        <Router>
+            <App />
+        </Router>
     </Provider>, document.getElementById('root'));

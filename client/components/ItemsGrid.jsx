@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; 
 import PropTypes from 'prop-types';
 
 import '../styles/Grid.css';
@@ -10,7 +11,7 @@ const ItemsGrid = ({ items }) => (
                 <img src={item.image} alt='image' className='item__image'/>
                 <p className='item__text'>{item.title}</p>
                 <p className='item__text'>{item.author}</p>
-                <button className='item__button'>Подробнее</button>
+                <Link to={`book/${item.id}`}><button className='item__button'>Подробнее</button></Link>
             </div>
         ))}
         
