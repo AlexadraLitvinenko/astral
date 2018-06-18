@@ -7,17 +7,13 @@ import fetchItems from '../actions/FetchItems';
 import ItemsGrid from '../components/ItemsGrid';
 
 class GridContainer extends Component {
-    
     componentDidMount() {
         this.props.fetchItems();
     }
 
     render() {
-        console.log('PROPS: ', this.props);
         const { items } = this.props;
-        return (
-            <ItemsGrid items={ items } />
-        );
+        return  items instanceof Array  ? <ItemsGrid items={ items } />: null;
     }
 }
 

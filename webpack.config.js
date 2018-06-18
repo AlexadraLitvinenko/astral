@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Autoprefixer = require('autoprefixer');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-
 module.exports = {
     entry: path.join(__dirname, 'client', 'index.jsx'),
     output: {

@@ -9,21 +9,20 @@ import fetchItem from '../actions/FetchItem';
 
 class SingleContainer extends Component {
     componentDidMount() {
-        const { match: { params } } = this.props;
-        this.props.fetchItem(params.id);
+        const { match: { params: { id } } } = this.props;
+        this.props.fetchItem(id);
     }
 
     render() {
         const { title, author, image, description } = this.props;
         return (
-            <Single { ...{title, author, image, description} }/>
+            <Single  { ...{title, author, image, description} } />
         );
     }
 }
 
-const mapStateToProps = (state, { match }) => ({
+const mapStateToProps = state => ({
     ...state.listReducer.items,
-    match,
 });
 
 SingleContainer.propTypes = {
