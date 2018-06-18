@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-import fetchBegin from './fetchItemsBegin'; 
-import fetchSuccess from './fetchItemsSuccess';
-import fetchError from './fetchItemsError';
+import fetchBegin from './FetchBegin'; 
+import fetchSuccess from './FetchSuccess';
+import fetchError from './FetchError';
 
 export default id => {
     return dispatch => {
         dispatch(fetchBegin());
-        return axios.post('/api/book/:id', { id })
+        return axios.get('/api/book/:id', { params: { id } })
             .then(res => dispatch(fetchSuccess(...res.data)))
             .catch(err => dispatch(fetchError(err)));  
     };

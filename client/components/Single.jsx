@@ -5,14 +5,12 @@ import PropTypes from 'prop-types';
 import '../styles/Single.css';
 
 const Single = ({ title, author, image, description }) => (
-    <div className='block'>
-        <img src={ image } className='block__image'/>
-        <p className='block__text'>{ title }</p>
-        <p className='block__text'>{ author }</p>
-        <p className='block__text'>{ description }</p>
-        <Link to='/'>
-            <button>Назад</button>
-        </Link>
+    <div className="block">
+        <img src={ image } className="block__image"/>
+        <p className="block__text">{title}</p>
+        <p className="block__text">{author}</p>
+        <p className="block__text">{description}</p>
+        <Link to='/' className="block__button">Назад</Link>
     </div>
 );
 

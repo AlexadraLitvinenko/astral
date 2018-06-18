@@ -1,6 +1,5 @@
 .grid {
     display: flex;
-    border: 1px solid red;
     justify-content: space-around;
     flex-wrap: wrap;
 }
@@ -15,7 +14,7 @@
 .item__image {
     display: block;
     width: 100%;
-    height: 68%;
+    height: 350px;
     border-bottom: 4px solid black;
 }
 
@@ -31,8 +30,19 @@
 }
 
 .item__button {
-
     font-size: 18px;
+    height: 20px;
     display: block;
-    margin: 0 auto;
+    margin: 10px auto 0 auto;
+    text-decoration: none;
+    color: black;
+    border: 1px solid red;
+    text-align: center;
+    width: 100px;
+    transition-duration: 0.4s;
+    transition-property: all;
+}
+
+.item__button:hover {
+    transform: scale(1.1);
 }

@@ -10,26 +10,25 @@ import fetchItem from '../actions/FetchItem';
 class SingleContainer extends Component {
     componentDidMount() {
         const { match: { params: { id } } } = this.props;
+
         this.props.fetchItem(id);
     }
 
     render() {
-        const { title, author, image, description } = this.props;
+        const { items } = this.props;
+
         return (
-            <Single  { ...{title, author, image, description} } />
+            <Single  { ...items } />
         );
     }
 }
 
 const mapStateToProps = state => ({
-    ...state.listReducer.items,
+    items: state.listReducer.items,
 });
 
 SingleContainer.propTypes = {
-    title:  PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    items: PropTypes.object.isRequired,
     fetchItem: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired
 };

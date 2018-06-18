@@ -1,4 +1,4 @@
 export default items => ({
-    type: 'FETCH_ITEMS_SUCCESS',
+    type: 'FETCH_SUCCESS',
     payload: { items }
 });

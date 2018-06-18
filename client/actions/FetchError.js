@@ -1,4 +1,4 @@
 export default error => ({
-    type: 'FETCH_ITEMS_FAILURE',
+    type: 'FETCH_FAILURE',
     payload: { error }
 });

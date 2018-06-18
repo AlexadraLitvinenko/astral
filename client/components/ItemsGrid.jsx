@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import '../styles/Grid.css';
 
 const ItemsGrid = ({ items }) => (
-    <div className='grid'>
+    <div className="grid">
         {items.map(item => (
-            <div key={item.id} className='grid__item'>
-                <img src={item.image} alt='image' className='item__image'/>
-                <p className='item__text'>{item.title}</p>
-                <p className='item__text'>{item.author}</p>
-                <Link to={`book/${item.id}`}><button className='item__button'>Подробнее</button></Link>
+            <div key={item.id} className="grid__item">
+                <img src={item.image} alt="image" className="item__image"/>
+                <p className="item__text">{item.title}</p>
+                <p className="item__text">{item.author}</p>
+                <Link to={`book/${item.id}`} className="item__button">Подробнее</Link>
             </div>
         ))}
         

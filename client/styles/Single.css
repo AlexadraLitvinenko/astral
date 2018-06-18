@@ -21,3 +21,21 @@
 .block__text:last-of-type {
     font-weight: normal;
 }
+
+.block__button {
+    font-size: 18px;
+    height: 20px;
+    display: block;
+    margin: 10px auto 0 auto;
+    text-decoration: none;
+    color: black;
+    border: 1px solid red;
+    text-align: center;
+    width: 100px;
+    transition-duration: 0.4s;
+    transition-property: all;
+}
+
+.block__button:hover {
+    transform: scale(1.1);
+}

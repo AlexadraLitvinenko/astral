@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-import fetchItemsBegin from './fetchItemsBegin'; 
-import fetchItemsSuccess from './fetchItemsSuccess';
-import fetchItemsError from './fetchItemsError';
+import fetchItemsBegin from './FetchBegin'; 
+import fetchItemsSuccess from './FetchSuccess';
+import fetchItemsError from './FetchError';
 
 export default () => {
     return dispatch => {
