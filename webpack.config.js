@@ -4,9 +4,10 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Autoprefixer = require('autoprefixer');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
-    entry: path.join(__dirname, 'client', 'index.jsx'),
+    entry:  path.join(__dirname, 'client', 'index.jsx'),
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
@@ -20,7 +21,17 @@ module.exports = {
             {
                 test: /\.(js|jsx)?$/,
                 exclude: /(node_modules)/,
-                use: 'babel-loader'
+                use: [
+                    {
+                        loader: 'babel-loader', 
+                        options: {
+                            cacheDirectory: true
+                        }  
+                    }, 
+                    {
+                        loader: 'cache-loader'
+                    }
+                ],
             },
             {
                 test: /\.css$/,
@@ -60,6 +71,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'My-App',
             template: 'index.html'
+        }),
+        new HardSourceWebpackPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            children: true,
+            async: true,
         }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"development"'
