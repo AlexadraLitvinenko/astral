@@ -5,12 +5,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Autoprefixer = require('autoprefixer');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
     entry:  path.join(__dirname, 'client', 'index.jsx'),
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js',
+        filename: '[name].[chunkhash].js',
         publicPath: '/',
     },
     resolve: {
@@ -74,11 +75,9 @@ module.exports = {
         }),
         new HardSourceWebpackPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
-            children: true,
-            async: true,
+            name: 'vendor',
+            filename: 'vendor.[chunkhash].js'
         }),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"development"'
-        })   
+        new BundleAnalyzerPlugin()
     ],
 };

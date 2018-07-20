@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build:dev": "webpack",
+    "build:prod": "webpack -p",
+    "dev": "babel-node server/index.js",
+    "prod": "babel-node server/index.js",
     "start": "concurrently \"babel-node server/index.js\" \"webpack -w\""
   },
   "author": "Pavel Efimov",
@@ -43,7 +47,7 @@
     "html-webpack-plugin": "^3.2.0",
     "postcss-loader": "^2.1.5",
     "style-loader": "^0.21.0",
-    "uglifyjs-webpack-plugin": "^1.2.7",
-    "url-loader": "^1.0.1"
+    "url-loader": "^1.0.1",
+    "webpack-bundle-analyzer": "^2.13.1"
   }
 }
