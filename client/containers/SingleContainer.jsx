@@ -1,36 +1,38 @@
 import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
+import { toJS } from 'mobx'; 
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
+ 
 import Single from '../components/Single';
 
-import fetchItem from '../actions/FetchItem';
-
+@inject('store')
+@observer
 class SingleContainer extends Component {
     componentDidMount() {
-        const { match: { params: { id } } } = this.props;
-
-        this.props.fetchItem(id);
+        const { match: { params: { id } }, store: { fetchItem } } = this.props;
+        fetchItem(id);
     }
 
     render() {
-        const { items } = this.props;
-
+        const { items } = toJS(this.props.store);
+        console.log('REV: ', ...items);
         return (
-            <Single  { ...items } />
+            <Single  { ...items[0] } />
         );
     }
 }
 
-const mapStateToProps = state => ({
-    items: state.listReducer.items,
-});
-
 SingleContainer.propTypes = {
-    items: PropTypes.object.isRequired,
-    fetchItem: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired
+    store: PropTypes.objectOf(PropTypes.shape({
+        fetchItem: PropTypes.func.isRequired,
+        items: PropTypes.object.isRequired,
+    })),
+    match: PropTypes.objectOf(PropTypes.shape({
+        params: PropTypes.objectOf(PropTypes.shape({
+            id: PropTypes.string.isRequired
+        }))
+    })).isRequired
 };
 
-export default withRouter(connect(mapStateToProps, { fetchItem })(SingleContainer));
+export default withRouter(SingleContainer);

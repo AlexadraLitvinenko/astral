@@ -6,8 +6,7 @@
   "scripts": {
     "build:dev": "webpack",
     "build:prod": "webpack -p",
-    "dev": "babel-node server/index.js",
-    "prod": "babel-node server/index.js",
+    "server": "babel-node server/index.js",
     "start": "concurrently \"babel-node server/index.js\" \"webpack -w\""
   },
   "author": "Pavel Efimov",
@@ -15,18 +14,19 @@
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.3",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
     "prop-types": "^15.6.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0",
     "webpack": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.51",
     "@babel/node": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.54",
+    "@babel/plugin-proposal-decorators": "^7.0.0-beta.54",
     "@babel/preset-env": "^7.0.0-beta.51",
     "@babel/preset-react": "^7.0.0-beta.51",
     "@babel/preset-stage-2": "^7.0.0-beta.51",
@@ -45,6 +45,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "hard-source-webpack-plugin": "^0.10.1",
     "html-webpack-plugin": "^3.2.0",
+    "mobx-react-devtools": "^6.0.2",
     "postcss-loader": "^2.1.5",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",

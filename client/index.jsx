@@ -1,21 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'mobx-react';
 
 import App from './components/App';
-
-import rootReducer from './reducers/Index';
-
-const store = createStore(rootReducer, 
-    compose(applyMiddleware(thunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+import Store from './store/Store';
 
 render(
-    <Provider store={ store }>
+    <Provider store={ Store }>
         <Router>
             <App />
         </Router>
-    </Provider>, document.getElementById('root'));
+    </Provider>
+    , document.getElementById('root'));

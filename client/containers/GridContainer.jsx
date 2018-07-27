@@ -1,43 +1,35 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
+import { toJS } from 'mobx';
 import PropTypes from 'prop-types';
 
-import Loading from '../components/Loading';
 import Error from '../components/Error';
-
-import fetchItems from '../actions/FetchItems';
+import Loading from '../components/Loading';
 import ItemsGrid from '../components/ItemsGrid';
 
+@inject('store')
+@observer
 class GridContainer extends Component {
     componentDidMount() {
-        this.props.fetchItems();
+        const { fetchItems } = this.props.store;
+        this.props.store.fetchItems();
     }
 
     render() {
-        const { items, loading, error } = this.props;
-        
-        return error !== null ? <Error error={error}/>: loading ? <Loading /> : items instanceof Array  ? <ItemsGrid items={ items } />: null;
+        const { items, loading, error } = this.props.store;
+        return error !== null ? <Error error={error}/>: loading ? <Loading /> : items instanceof Array  ? <ItemsGrid items={ toJS(items) } />: null;
     }
 }
 
-const mapStateToProps = state => ({
-    items: state.listReducer.items,
-    loading: state.listReducer.loading,
-    error: state.listReducer.error
-});
-
 GridContainer.propTypes = {
-    loading: PropTypes.bool.isRequired,
-    error: PropTypes.object.isRequired,
-    items: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title:  PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired
-    })).isRequired,
-    fetchItems: PropTypes.func.isRequired,
-    
+    store: PropTypes.objectOf(
+        PropTypes.shape({
+            items: PropTypes.instanceOf(Object).isRequired,
+            loading: PropTypes.bool.isRequired,
+            error: PropTypes.object.isRequired,
+            fetchItems: PropTypes.func.isRequired
+        })
+    ).isRequired
 };
 
-export default withRouter(connect(mapStateToProps, { fetchItems })(GridContainer));
+export default GridContainer;
